@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 2.8)
 
-if(MSVC)
-  set(METIS_INSTALL FALSE)
-else()
-  set(METIS_INSTALL TRUE)
-endif()
+# if(MSVC)
+#   set(METIS_INSTALL FALSE)
+# else()
+#   set(METIS_INSTALL TRUE)
+# endif()
+set(METIS_INSTALL TRUE)
 message(STATUS "METIS_INSTALL: ${METIS_INSTALL}")
 
 # Configure libmetis library.

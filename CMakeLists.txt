@@ -30,6 +30,21 @@ endif()
 
 include(${GKLIB_PATH}/GKlibSystem.cmake)
 
+find_package(MPI REQUIRED)
+if(UNIX)
+    # set(CMAKE_CXX_COMPILER mpicxx CACHE FILEPATH "compiler with your MPI wrapping")
+    # set(CMAKE_FIND_LIBRARY_SUFFIXES ".a") # ! using static libs
+elseif(MSVC OR WIN32 OR MINGW)
+    # nothing
+    
+    if(MPI_CXX_FOUND)
+        set (CMAKE_EXE_LINKER_FLAGS "${MPI_C_LINK_FLAGS} ${CMAKE_EXE_LINKER_FLAGS}")
+    else()
+        message((FATAL_ERROR "MPI NOT FOUND"))
+    endif()
+else()
+    message(FATAL_ERROR "NOT YET IMPLEMENTED HERE")
+endif()
 # List of paths that the compiler will search for header files.
 # i.e., the -I equivalent
 include_directories(include)
